@@ -654,7 +654,7 @@ func (n *NodeAbstractResourceInstance) plan(
 	checkDiags := evalCheckRules(
 		checkResourcePrecondition,
 		n.Config.Preconditions,
-		ctx, nil, keyData,
+		ctx, n.Addr, keyData,
 		tfdiags.Error,
 	)
 	diags = diags.Append(checkDiags)
@@ -1510,7 +1510,7 @@ func (n *NodeAbstractResourceInstance) planDataSource(ctx EvalContext, currentSt
 	checkDiags := evalCheckRules(
 		checkResourcePrecondition,
 		n.Config.Preconditions,
-		ctx, nil, keyData,
+		ctx, n.Addr, keyData,
 		checkRuleSeverity,
 	)
 	diags = diags.Append(checkDiags)
@@ -1690,7 +1690,7 @@ func (n *NodeAbstractResourceInstance) applyDataSource(ctx EvalContext, planned 
 	checkDiags := evalCheckRules(
 		checkResourcePrecondition,
 		n.Config.Preconditions,
-		ctx, nil, keyData,
+		ctx, n.Addr, keyData,
 		tfdiags.Error,
 	)
 	diags = diags.Append(checkDiags)

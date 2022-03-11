@@ -21,6 +21,7 @@ import (
 type graphWalkOpts struct {
 	InputState *states.State
 	Changes    *plans.Changes
+	Conditions plans.Conditions
 	Config     *configs.Config
 
 	MoveResults refactoring.MoveResults
@@ -91,6 +92,11 @@ func (c *Context) graphWalker(operation walkOperation, opts *graphWalkOpts) *Con
 		// afterwards.
 		changes = plans.NewChanges()
 	}
+	conditions := opts.Conditions
+	if conditions == nil {
+		// FIXME: comment
+		conditions = plans.NewConditions()
+	}
 
 	if opts.Config == nil {
 		panic("Context.graphWalker call without Config")
@@ -103,6 +109,7 @@ func (c *Context) graphWalker(operation walkOperation, opts *graphWalkOpts) *Con
 		RefreshState:     refreshState,
 		PrevRunState:     prevRunState,
 		Changes:          changes.SyncWrapper(),
+		Conditions:       conditions.SyncWrapper(),
 		InstanceExpander: instances.NewExpander(),
 		MoveResults:      opts.MoveResults,
 		Operation:        operation,

@@ -283,7 +283,7 @@ func (n *NodeApplyableOutput) Execute(ctx EvalContext, op walkOperation) (diags 
 	checkDiags := evalCheckRules(
 		checkOutputPrecondition,
 		n.Config.Preconditions,
-		ctx, nil, EvalDataForNoInstanceKey,
+		ctx, n.Addr, EvalDataForNoInstanceKey,
 		checkRuleSeverity,
 	)
 	diags = diags.Append(checkDiags)

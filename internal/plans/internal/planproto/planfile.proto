@@ -44,6 +44,9 @@ message Plan {
     // at apply time.
     repeated OutputChange output_changes = 4;
 
+    // FIXME: comment
+    repeated ConditionResult condition_results = 19;
+
     // An unordered set of target addresses to include when applying. If no
     // target addresses are present, the plan applies to the whole
     // configuration.
@@ -196,6 +199,22 @@ message OutputChange {
     // in "change" is sensitive and should not be shown directly in any
     // rendered plan.
     bool sensitive = 3;
+}
+
+enum ConditionType {
+	INVALID                = 0;
+	RESOURCE_PRECONDITION  = 1;
+	RESOURCE_POSTCONDITION = 2;
+	OUTPUT_PRECONDITION    = 3;
+}
+
+message ConditionResult {
+    string addr = 1;
+    string condition_addr = 2;
+    bool result = 3;
+    bool unknown = 4;
+    ConditionType type = 5;
+    string error_message = 6;
 }
 
 // DynamicValue represents a value whose type is not decided until runtime,

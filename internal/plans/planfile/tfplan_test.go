@@ -21,6 +21,29 @@ func TestTFPlanRoundTrip(t *testing.T) {
 		VariableValues: map[string]plans.DynamicValue{
 			"foo": mustNewDynamicValueStr("foo value"),
 		},
+		Conditions: plans.Conditions{
+			"test_thing.woot[0].postconditions[0]": &plans.ConditionResult{
+				Address: addrs.Resource{
+					Mode: addrs.ManagedResourceMode,
+					Type: "test_thing",
+					Name: "woot",
+				}.Instance(addrs.IntKey(0)).Absolute(addrs.RootModuleInstance),
+				Result:  false,
+				Unknown: true,
+				Type:    plans.ResourcePostcondition,
+			},
+			"test_thing.woot[1].preconditions[0]": &plans.ConditionResult{
+				Address: addrs.Resource{
+					Mode: addrs.ManagedResourceMode,
+					Type: "test_thing",
+					Name: "woot",
+				}.Instance(addrs.IntKey(0)).Absolute(addrs.RootModuleInstance),
+				Result:       false,
+				Unknown:      false,
+				Type:         plans.ResourcePrecondition,
+				ErrorMessage: "Invalid thing: too much woot.",
+			},
+		},
 		Changes: &plans.Changes{
 			Outputs: []*plans.OutputChangeSrc{
 				{

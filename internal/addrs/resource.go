@@ -210,6 +210,7 @@ func (r AbsResource) UniqueKey() UniqueKey {
 // AbsResourceInstance is an absolute address for a resource instance under a
 // given module path.
 type AbsResourceInstance struct {
+	checkable
 	targetable
 	Module   ModuleInstance
 	Resource ResourceInstance

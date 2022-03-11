@@ -159,6 +159,9 @@ type EvalContext interface {
 	// the global state.
 	State() *states.SyncState
 
+	// FIXME: comment
+	Conditions() *plans.ConditionsSync
+
 	// RefreshState returns a wrapper object that provides safe concurrent
 	// access to the state used to store the most recently refreshed resource
 	// values.

@@ -31,6 +31,7 @@ type Plan struct {
 
 	VariableValues    map[string]DynamicValue
 	Changes           *Changes
+	Conditions        Conditions
 	DriftedResources  []*ResourceInstanceChangeSrc
 	TargetAddrs       []addrs.Targetable
 	ForceReplaceAddrs []addrs.AbsResourceInstance
