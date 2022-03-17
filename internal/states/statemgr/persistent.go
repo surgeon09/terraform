@@ -2,6 +2,7 @@ package statemgr
 
 import (
 	version "github.com/hashicorp/go-version"
+	"github.com/hashicorp/terraform/internal/states"
 )
 
 // Persistent is a union of the Refresher and Persistent interfaces, for types
@@ -16,6 +17,13 @@ import (
 type Persistent interface {
 	Refresher
 	Persister
+	OutputReader
+}
+
+// BC_TODO
+type OutputReader interface {
+	// BC_TODO
+	GetOutputValues() (map[string]*states.OutputValue, error)
 }
 
 // Refresher is the interface for managers that can read snapshots from
