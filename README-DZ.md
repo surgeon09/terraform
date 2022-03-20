@@ -48,7 +48,6 @@ commit b14b74c4939dcab573326f4e3ee2a62e23e12f89
 Author: Chris Griggs <cgriggs@hashicorp.com>
 Date:   Tue Mar 10 08:59:20 2020 -0700
 
-#1. Найдите полный хеш и комментарий коммита, хеш которого начинается на aefea:
     [Website] vmc provider links
 
 commit 3f235065b9347a758efadc92295b540ee0a5e26e
@@ -108,3 +107,24 @@ Author: tf-release-bot <terraform@hashicorp.com>
 Date:   Thu Mar 5 21:12:06 2020 +0000
 
     Cleanup after v0.12.23 release
+
+#5 Найдите коммит в котором была создана функция func providerSource, ее определение в коде выглядит так func providerSource(...) (вместо троеточего перечислены аргументы).
+
+#Находим файл в котором была прописана функция
+git grep -p 'func providerSource('
+
+provider_source.go=import (
+provider_source.go:func providerSource(configs []*cliconfig.ProviderInstallation, services *disco.Disco) (getproviders.Source, tfdiags.Diagnostics) {
+
+#Находим коммит где функция с аргументами
+git log -L :cliconfig.ProviderInstallation:provider_source.go
+
+commit 5af1e6234ab6da412fb8637393c5a17a1b293663
+Author: Martin Atkins <mart@degeneration.co.uk>
+Date:   Tue Apr 21 16:28:59 2020 -0700
+
+...
++func providerSource(configs []*cliconfig.ProviderInstallation, services *disco.Disco) (
+...
+
+Коммит: commit 5af1e6234ab6da412fb8637393c5a17a1b293663
