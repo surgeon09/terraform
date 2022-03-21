@@ -128,3 +128,9 @@ Date:   Tue Apr 21 16:28:59 2020 -0700
 ...
 
 Коммит: commit 5af1e6234ab6da412fb8637393c5a17a1b293663
+
+#6 Найдите все коммиты в которых была изменена функция globalPluginDirs.
+git log -SglobalPluginDirs --oneline
+35a058fb3 main: configure credentials from the CLI config file
+c0b176109 prevent log output during init
+8364383c3 Push plugin discovery down into command package
