@@ -134,3 +134,12 @@ git log -SglobalPluginDirs --oneline
 35a058fb3 main: configure credentials from the CLI config file
 c0b176109 prevent log output during init
 8364383c3 Push plugin discovery down into command package
+
+#7 Кто автор функции synchronizedWriters
+
+git log -SsynchronizedWriters --pretty=format:"%h - %an, %ar : %s"
+bdfea50cc - James Bardin, 1 год, 4 месяца назад : remove unused
+fd4f7eb0b - James Bardin, 1 год, 5 месяцев назад : remove prefixed io
+5ac311e2a - Martin Atkins, 4 года, 11 месяцев назад : main: synchronize writes to VT100-faker on Windows%
+
+Автор: Martin Atkins
